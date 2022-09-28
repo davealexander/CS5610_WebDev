@@ -1,0 +1,48 @@
+
+.header{
+  background-image: url("images/study1.png");
+  background-color: black;
+  background-size: cover;
+  background-repeat: no-repeat;
+  height: 200px;
+  width: 100%;
+  text-align: center;
+}
+.header h1{
+  padding-top: 80px;
+  color: white;
+  font-weight: bold;
+}
+
+#listicle{
+  text-align: justify;
+  width: 50%;
+  padding-top: 10px;
+  margin-left: auto;
+  margin-right: auto;
+  
+}
+
+#listicle h2{
+  display: inline;
+  padding-right: 30px;
+  color: gray
+}
+#listicle h3{
+  display: inline;
+  font-weight: bold;
+  text-decoration: underline;
+  color: crimson;
+}
+
+.pheader{
+  font-weight: bold;
+}
+
+footer{
+  padding: 10px;
+  text-align: center;
+}
+
+
+

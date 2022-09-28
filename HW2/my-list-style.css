@@ -1,0 +1,66 @@
+#header{
+    background-repeat: no-repeat;
+    background-position: center;
+    background-image: url("images/mead1.jpg");
+    background-size: cover;
+    height: 200px;
+}
+#header h1{
+    color: white;
+    text-align: center;
+    padding-top: 50px;
+    font-size: 40px;
+}
+
+#list h2{
+    padding-left: 5px;
+    padding-top: 10px;
+    color: rgb(174, 134, 33);
+    font-weight: bold;
+    display: inline-flex
+}
+
+#list{
+    animation: pulse 5s infinite; 
+    width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+@keyframes pulse{
+    0%{
+        background-color: white;
+    }
+    100%{
+        background-color: rgb(220, 220, 250);
+    }
+}
+
+#list img{
+    width: 600px;
+    height: 350px;
+}
+
+#list p {
+    font-family: fantasy;
+    padding: 20px;
+    display: flex;
+    flex-wrap: wrap;
+    text-align: center;
+
+}
+#list ul{
+    font-family: fantasy;
+    text-align: center;
+    list-style-position: inside;
+}
+
+footer{
+    color:green;
+    padding-top: 50px;
+    text-align: center;
+}
+footer img{
+    height: 200px;
+    width:300px;
+}
