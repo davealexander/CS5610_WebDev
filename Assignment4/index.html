@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>Breakout Game - Final Version from Class</title>
+    <style>
+        * { padding: 0; margin: 0; }
+        canvas { background: #eee; display: block; margin: 0 auto; margin-top: 10; }
+        .button{ color: blue; height: 50px; display: block; margin: 0 auto; margin-top:20px; padding: 5px;};
+    </style>
+</head>
+<body>
+
+<canvas id="myCanvas" width="440" height="420"></canvas>
+<button class="button" onclick="toggleIncreaseSpeed()">2x Speed</button>
+<button class="button" onclick="togglePause()">Pause Game</button>
+<button class="button" onclick="toggleHardMode()">Hard Mode</button>
+
+<script>
+    // EXTENSIONS //
+    // Extension 1: Double Speed (Technically 2.5x)
+    // Extension 2: Pause button
+    // Extension 3: Random Color  
+    // Extension 4: Create levels
+    // Extension 5: Hardmode (Combines double speed and Smaller paddle)
+
+
+    //Variables
+    var canvas = document.getElementById("myCanvas");
+    var ctx = canvas.getContext("2d");
+    var ballRadius = 10;
+    var x = canvas.width/2;
+    var y = canvas.height-30;
+    var dx = 2;
+    var dy = -2;
+    var paddleHeight = 10;
+    var paddleWidth = 75;
+    var paddleX = (canvas.width-paddleWidth)/2;
+    var rightPressed = false;
+    var leftPressed = false;
+    var brickRowCount = 5;
+    var brickColumnCount = 3;
+    var brickWidth = 70;
+    var brickHeight = 20;
+    var brickPadding = 10;
+    var brickOffsetTop = 30;
+    var brickOffsetLeft = 30;
+    var score = 0;
+    var progressScore = 0
+    var levelScore = brickRowCount*brickColumnCount
+    var level = 1;
+    var lives = 3;
+    var increaseSpeed = false; 
+    var paused = false;
+    var bricks = [];
+    var hardMode = false;
+
+    //Event Listeners
+    document.addEventListener("keydown", keyDownHandler, false);
+    document.addEventListener("keyup", keyUpHandler, false);
+    document.addEventListener("mousemove", mouseMoveHandler, false);
+
+    //Event functions
+    function keyDownHandler(e) {
+        if(e.code  == "ArrowRight") {
+            rightPressed = true;
+        }
+        else if(e.code == 'ArrowLeft') {
+            leftPressed = true;
+        }
+    }
+    function keyUpHandler(e) {
+        if(e.code == 'ArrowRight') {
+            rightPressed = false;
+        }
+        else if(e.code == 'ArrowLeft') {
+            leftPressed = false;
+        }
+    }
+    function mouseMoveHandler(e) {
+        var relativeX = e.clientX - canvas.offsetLeft;
+        if(relativeX > 0 && relativeX < canvas.width) {
+            paddleX = relativeX - paddleWidth/2;
+        }
+    }
+    
+    //Extension 1: Increases speed to 2.5x 
+    function toggleIncreaseSpeed(){
+        if(!increaseSpeed){
+            increaseSpeed = true;
+        }
+        else{
+            increaseSpeed = false; 
+        }
+    }
+
+    //Extension 2: Pause button
+    function togglePause(){
+        if(!paused){
+            paused = true;
+        }
+        else{
+            paused = false;
+            requestAnimationFrame(draw);
+        }
+    }
+
+    //Extension 5: Toggle Hard Mode (Hard Mode = smaller paddle and 2x speed)
+    function toggleHardMode(){
+        if(!hardMode){
+            hardMode = true;
+        }
+        else{
+            hardMode = false;
+        }
+    }
+
+    //Adds properties to bricks
+    function addBrickProperties(){
+        for(var c=0; c<brickColumnCount; c++) {
+            bricks[c] = [];
+            for(var r=0; r<brickRowCount; r++) {
+                //Extension 3: added random color attribute to bricks object
+                bricks[c][r] = { x: 0, y: 0, status: 1, color: randomColor() };
+            }
+        }
+    }
+
+    //Handles ball collision with bricks
+    function collisionDetection() {
+        for(var c=0; c<brickColumnCount; c++) {
+            for(var r=0; r<brickRowCount; r++) {
+                var b = bricks[c][r];
+                if(b.status == 1) {
+                    //Extension 4: Enhannced logic for level increase
+                    if(x > b.x && x < b.x+brickWidth && y > b.y && y < b.y+brickHeight) {
+                        dy = -dy;
+                        b.status = 0;
+                        score++;
+                        progressScore++
+                        if(progressScore == levelScore) {
+                            alert("Level " + level + " complete!");
+                            level++ 
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    //Extension 3 random color logic
+    //Random colors for bricks used in bricks object line 40
+    function randomColor() {
+        //Array of hexnumbers
+        var hexNumbers = [0,1,2,3,4,5,6,7,8,9,'A','B','C','D','E','F'];
+        // color is used to return a hexadecimal color value
+        var color = '#';
+        //loop concatanates hexadecimal value to color
+        for (var i = 0; i < 6; i++){
+            color += hexNumbers[Math.floor(Math.random() * 16)];
+        }
+        // return color
+        return color;
+    }
+
+    //draws the ball
+    function drawBall() {
+        paddleHeight = 10;
+        paddleWidth = 75;
+        ctx.beginPath();
+        ctx.arc(x, y, ballRadius, 0, Math.PI*2);
+        ctx.fillStyle = "#0095DD";
+        ctx.fill();
+        ctx.closePath();
+    }
+
+    //draws the paddle
+    function drawPaddle() {
+        ctx.beginPath();
+        ctx.rect(paddleX, canvas.height-paddleHeight, paddleWidth, paddleHeight);
+        ctx.fillStyle = "#0095DD";
+        ctx.fill();
+        ctx.closePath();
+    }
+
+    //Extension 5 : Draws a smaller paddle
+    function drawSmallPaddle() {
+            paddleHeight = 10;
+            paddleWidth = 37;
+            ctx.beginPath();
+            ctx.rect(paddleX, canvas.height-paddleHeight, paddleWidth, paddleHeight);
+            ctx.fillStyle = "#0095DD";
+            ctx.fill();
+            ctx.closePath();
+
+    }
+
+    //draws bricks
+    function drawBricks() {
+        for(var c=0; c<brickColumnCount; c++) {
+            for(var r=0; r<brickRowCount; r++) {
+                if(bricks[c][r].status == 1) {
+                    var brickX = (r*(brickWidth+brickPadding))+ brickOffsetLeft;
+                    var brickY = (c*(brickHeight+brickPadding))+ brickOffsetTop;
+                    bricks[c][r].x = brickX;
+                    bricks[c][r].y = brickY;
+                    ctx.beginPath();
+                    ctx.rect(brickX, brickY, brickWidth, brickHeight);
+                    ctx.fillStyle = bricks[c][r].color;
+                    ctx.fill();
+                    ctx.closePath();
+                }
+            }
+        }
+    }
+    //draws the score text
+    function drawScore() {
+        ctx.font = "16px Arial";
+        ctx.fillStyle = "#0095DD";
+        ctx.fillText("Score: "+score, 8, 20);
+    }
+
+    //draws the level text
+    function drawLevel() {
+        ctx.font = "16px Arial";
+        ctx.fillStyle = "#0095DD";
+        ctx.fillText("Level: "+level, canvas.width/2-30, 20);
+    }
+    //draws the lives text
+    function drawLives() {
+        ctx.font = "16px Arial";
+        ctx.fillStyle = "#0095DD";
+        ctx.fillText("Lives: "+lives, canvas.width-65, 20);
+    }
+    
+    //Extension 4: Make a new level
+    function newLevel(){
+        brickColumnCount = brickColumnCount + 1;
+        levelScore = brickColumnCount * brickRowCount
+        addBrickProperties();
+        drawBricks();
+
+    }
+
+   //draws the breakout game and handles some game logic
+    function draw() {
+
+            // Game setup 
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            drawBall();
+            //Extension 5: Hard mode functions 
+            if(hardMode){
+                drawSmallPaddle();
+                toggleIncreaseSpeed();
+            }
+            else{
+                drawPaddle();
+            }
+            drawScore();
+            drawLevel();
+            drawLives();
+            collisionDetection();
+
+            //Conditional that handles going to the next level
+            if(progressScore == levelScore ){
+                newLevel();
+                progressScore = 0 
+                x = canvas.width/2;
+                y = canvas.height-30;
+
+            }
+            else if(level == 5){
+                alert("You won!")
+                //reloads page
+                document.location.reload();
+
+            }
+            else{
+                drawBricks(); 
+            }
+
+            //Ball Bounce
+            if(x + dx > canvas.width-ballRadius || x + dx < ballRadius) {
+                dx = -dx
+            }
+
+            if(y + dy < ballRadius) {
+                dy = -dy;
+            }
+            else if(y + dy > canvas.height-ballRadius) {
+                if(x > paddleX && x < paddleX + paddleWidth) {
+                    dy = -dy;
+                }
+                else {
+                    lives--;
+                    if(!lives) {
+                        alert("GAME OVER");
+                        document.location.reload();
+                    }
+                    else  {
+                        x = canvas.width/2;
+                        y = canvas.height-30;
+                        dx = 2 ;
+                        dy = -2 ;
+                        paddleX = (canvas.width-paddleWidth)/2;
+                    }
+                }
+            }
+
+            //Move paddle 
+            if(rightPressed && paddleX < canvas.width-paddleWidth) {
+                paddleX += 7;
+            }
+            else if(leftPressed && paddleX > 0) {
+                paddleX -= 7;                                
+            }
+
+            //Logic for speed
+            if(!increaseSpeed){
+                //normal speed and angles
+                x += dx;
+                y += dy;
+            }
+            else{
+                //Increases speed by 2.5 
+                x += dx * 2.5;
+                y += dy * 2.5;
+            }
+            
+            //Extension 2: Pause button logic 
+            if(paused == false){
+                var gameState = requestAnimationFrame(draw);
+            }
+            else{
+                cancelAnimationFrame(gameState)
+             }
+        }
+    addBrickProperties();
+    draw();
+</script>
+
+</body>
+</html>
