@@ -1,0 +1,43 @@
+#headerContainer{
+    text-align: center;
+    width: 300px;
+    height: 50px;
+    background-color: cyan;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+#questionSection{
+    width: 400px;
+    height: 200px;
+    border-radius: 5px;
+    background-color: gray;
+    color: white;
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+#answerSection{
+    
+    width: 400px;
+    height: 50px;
+    border-radius: 5px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 50px;
+    padding-top: 25px;
+    padding-left: 10px;
+    background-color: blue;
+    color: white;
+}
+
+#answerLabel{
+    color: white;
+}
+#userAnswer{
+    margin-left: 50px;
+    
+}
+
+
