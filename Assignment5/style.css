@@ -6,6 +6,21 @@
     margin-left: auto;
     margin-right: auto;
 }
+#strikeSection{
+    width: 100px;
+    height: 100px;
+    background-color: red;
+    margin-right: auto;
+    display: flexbox;
+}
+#pointsSection{
+    width: 100px;
+    height: 100px;
+    background-color: red;
+    margin-left: auto;
+    display: flex;
+
+}
 
 #questionSection{
     width: 400px;
@@ -35,9 +50,9 @@
 #answerLabel{
     color: white;
 }
+
 #userAnswer{
     margin-left: 50px;
-    
 }
 
 

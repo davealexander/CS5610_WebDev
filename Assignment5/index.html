@@ -7,11 +7,20 @@
     <title>Trivia Game</title>
     <link rel="stylesheet" href="style.css">
   </head>
+
   <body>
     <div id="headerContainer">
         <h1>Trivia Game (API)</h1>
     </div>
     
+    <div id="strikeSection">
+      <p id="strikeHeader">Strike:</p>
+    </div>
+
+    <div id="pointsSection">
+    </div>
+
+
     <div id="questionSection">
       <div id="questionTitle"></div>
       <div id="questionData"></div>
@@ -22,9 +31,6 @@
         <label for="answer" id="answerLabel">Answer:</label>
         <input type="text" id="userAnswer">
         <input type="submit" value="Submit" onclick="checkAnswer()" id="submitButton">
-    </div>
-
-    <div id="pointsSection">
     </div>
 
 	<script src="triviaApi.js"></script>

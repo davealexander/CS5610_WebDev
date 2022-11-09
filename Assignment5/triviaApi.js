@@ -1,8 +1,10 @@
 // const { response } = require("express");
-
+//Global Variables
 const url = 'http://jservice.io/api/random'
 var points = 0;
+var strikes = 0;
 
+// ## FETCH API SETUP ## //
 
 //Fetch function to grab question and title of subject
 async function getQuestion(){
@@ -32,12 +34,15 @@ function updateQuestionBox(title,question){
     document.getElementById("questionData").appendChild(questionNode);
 }
 
+//Grabs the next question and then updates the HTML with the new question
 async function nextQuestion(){
     response = await fetch(url);
     data = await response.json();
     document.getElementById("titleValue").textContent = data[0].category.title;
     document.getElementById("questionValue").textContent = data[0].question;   
 }
+
+// ## POINT HANDLERS ## //
 
 //Creates the point node with an id of pointValue
 function createPoints(){
@@ -61,20 +66,63 @@ function subtractPoints(){
     document.getElementById("pointValue").textContent = points;
 }
 
+// ## STRIKE HANDLERS ## //
+
+//Creates a strikeNode that shows the amount of strikes a user has
+function createStrikes(){
+    const strikeNode =  document.createElement("p");
+    strikeNode.setAttribute("id","strikeValue")
+    const strikeText = document.createTextNode(strikes);
+    
+    strikeNode.appendChild(strikeText)
+    
+    document.getElementById("strikeHeader").appendChild(strikeNode);
+}
+
+// updates the DOM by adding points to the strike counter when an answer is answered incorrectly. 
+function strikeCounter(){
+    strikes++;
+    document.getElementById("strikeValue").textContent = strikes;
+
+}
+
+// ## GAME LOGIC ## //
+
+// checks and alerts the player if they won or loss the trivia game
+function checkWinLoss(){
+    if(points == 500){
+        alert("Congratulations you win!");
+        document.location.reload();
+    }
+    else if(strikes === 3){
+        alert("Three strikes you're out");
+        document.location.reload();
+    }
+}
+
 //checks the answer from user input and compares the answer from the API
 function checkAnswer(){
     //store user answer
     userAnswer = document.getElementById("userAnswer").value;
+    questionAnswer = data[0].answer;
+    sanitizedAnswer = questionAnswer.replace(/[&\/\\#,+()$~%.'":*?<>{}]/g, '')
+
     
-    if(userAnswer.toLowerCase() == data[0].answer.toLowerCase()){
+    if(userAnswer.toLowerCase() == sanitizedAnswer.toLowerCase()){
         updatePoints();
         nextQuestion();
+        checkWinLoss();
     }
     else{
         subtractPoints();
+        strikeCounter();
+        checkWinLoss();
     }
 }
 
+//INITIALIZE TRIVIA CONTENT
+
 getQuestion();
-createPoints()
+createPoints();
+createStrikes();
 
