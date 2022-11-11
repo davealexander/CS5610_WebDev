@@ -9,30 +9,41 @@
   </head>
 
   <body>
-    <div id="headerContainer">
-        <h1>Trivia Game (API)</h1>
-    </div>
+    <div id="container">
     
-    <div id="strikeSection">
-      <p id="strikeHeader">Strike:</p>
+      <div id="headerContainer">
+        <h1>Trivia Game (API)</h1>
+      </div>
+    
+        <div id="strikeSection">
+          <p id="strikeHeader">Strike:</p>
+      </div>
+
+      <div id="pointsSection">
+        <p id="pointHeader">Points:</p>
+      </div>
+
+      <div id="questionSection">
+        <div id="questionTitle"></div>
+        <div id="questionData"></div>
+      </div>
+      <div id ="answerSection">
+          <!--This is where user input will be inputed and checked against the correct answer provided by the API-->
+          <label for="answer" id="answerLabel">Answer:</label>
+          <input type="text" value="" id="userAnswer">
+          <input type="submit" value="Submit" onclick="checkAnswer()" id="submitButton">
+      </div>
+      <div id="answerHelper">
+        <p id="answerHelperTitle">FOR TESTING ONLY</p>
+        <p id="answerValue">******</p>
+        <input type="submit" value="Show Answer" onclick="showAnswer()" id="answerButton">
+      </div>
     </div>
 
-    <div id="pointsSection">
-    </div>
+    <footer>
+      <h3>API Used:http://jservice.io/api/random</h3>
+    </footer>
 
-
-    <div id="questionSection">
-      <div id="questionTitle"></div>
-      <div id="questionData"></div>
-    </div>
-
-    <div id ="answerSection">
-        <!--This is where user input will be inputed and checked against the correct answer provided by the API-->
-        <label for="answer" id="answerLabel">Answer:</label>
-        <input type="text" id="userAnswer">
-        <input type="submit" value="Submit" onclick="checkAnswer()" id="submitButton">
-    </div>
-
-	<script src="triviaApi.js"></script>
+	<script src="index.js"></script>
   </body>
 </html>

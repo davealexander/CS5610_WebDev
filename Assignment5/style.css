@@ -1,40 +1,84 @@
+body{
+    background-color: lightgray;
+}
+
+footer{
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    text-align: center;
+}
+
+#container{
+    margin-left: auto;
+    margin-right: auto;
+    width: 500px;
+}
+
 #headerContainer{
     text-align: center;
     width: 300px;
     height: 50px;
-    background-color: cyan;
+    border-radius: 5px;
+    background-color: rgb(0, 255, 140);
     margin-left: auto;
     margin-right: auto;
+    display: block;
 }
+
 #strikeSection{
     width: 100px;
     height: 100px;
-    background-color: red;
-    margin-right: auto;
-    display: flexbox;
+    background-color: rgb(143, 203, 246);
+    border-style: solid;
+    border-width: 2px;
+    border-color: black;
+    border-radius: 5px;
+    margin-top: 20px;
+    display: inline-block;
+    margin-left: 75px;
+    margin-right: 150px;
+    
+}
+#strikeHeader{
+    text-align: center;
+    font-size: large;
+    font-weight: bold;
+    color: red;
+}
+
+#pointHeader{
+    text-align: center;
+    font-size: large;
+    font-weight: bold;
+
 }
 #pointsSection{
     width: 100px;
     height: 100px;
-    background-color: red;
-    margin-left: auto;
-    display: flex;
-
-}
-
-#questionSection{
-    width: 400px;
-    height: 200px;
+    background-color: rgb(35, 206, 180);
     border-radius: 5px;
-    background-color: gray;
+    border-style: solid;
+    border-width: 2px;
+    border-color: black;
+    border-radius: 5px;
+    margin-top: 20px;
+    display: inline-block;
+}
+#questionSection{
+    width: 450px;
+    height: 200px;
+    padding: 10px;
+    border-radius: 5px;
+    background-color: rgb(64, 70, 236);
     color: white;
     text-align: center;
+    margin-top: 50px;
     margin-left: auto;
     margin-right: auto;
+    display:block;
 }
-
-#answerSection{
-    
+#answerSection{ 
     width: 400px;
     height: 50px;
     border-radius: 5px;
@@ -43,16 +87,46 @@
     margin-top: 50px;
     padding-top: 25px;
     padding-left: 10px;
-    background-color: blue;
+    background-color: rgb(65, 172, 214);
     color: white;
 }
-
 #answerLabel{
     color: white;
+    font-weight: bold;
+    font-size: large;
+    display: inline;
+    display: inline-block;
+}
+#userAnswer{
+    height: 20px;
+    width: 200px;
+    border-radius: 5px;
+    margin-left: 10px;
+    display: inline-block;
+}
+#answerHelper{
+    width: 300px;
+    height: 100px;
+    background-color: white;
+    border-radius: 5px;
+    margin-top: 50px;
+    margin-left: auto;
+    margin-right: auto;
+}
+#answerHelperTitle{
+    display: block;
+    padding-top: 5px;
+    margin-left: 75px;
+    margin-right: auto;
+}
+#answerValue{
+    text-align: center;
+}
+#answerButton{
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
 }
 
-#userAnswer{
-    margin-left: 50px;
-}
 
 
