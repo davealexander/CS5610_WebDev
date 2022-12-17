@@ -1,0 +1,12 @@
+.Title {
+  color: #ffffff;
+  padding: 5px;
+  margin-top: 10px;
+  text-align: center;
+  margin-bottom: 10px;
+  background-color: #1b1c1e;
+  border-radius: 5px;
+}
+.eventContainer {
+  width: 900px;
+}

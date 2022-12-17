@@ -1,0 +1,19 @@
+.announceCard{
+    width: 300px;
+    height: 400px;
+    margin-top: 20px;
+    background-color: lightgray;
+    border-radius: 10px;
+    box-shadow: 5px 5px 5px gray;
+    text-align: center;
+}
+
+
+.largeCardBox{
+    width: 500px;
+    height: 400px;
+    margin-top: 20px;
+    background-color: lightgray;
+    border-radius: 10px;
+    box-shadow: 5px 5px 5px gray;
+}

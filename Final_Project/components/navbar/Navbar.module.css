@@ -1,0 +1,85 @@
+.orgLogo {
+  width: 100px;
+  height: 100px;
+  margin-bottom: 20px;
+}
+.orgList {
+  display: inline;
+}
+.orgTitle {
+  font-weight: bold;
+  display: block;
+}
+.list {
+  height: 90%;
+  width: 240px;
+  list-style: none;
+  background-color: #1b1c1e;
+  color: white;
+  margin-left: 10px;
+  padding-top: 20px;
+  border-radius: 10px;
+  border: 1px solid;
+  box-shadow: 10px;
+  position: fixed;
+  z-index: 1;
+}
+.list li {
+  margin-bottom: 10px;
+  padding-bottom: 10px;
+}
+.list li:hover {
+  width: 150px;
+  background-color: #4998e1;
+  border-radius: 5px;
+  padding: 5px;
+}
+.list a {
+  color: inherit;
+  text-decoration: none;
+}
+@media screen and (max-width: 700px) {
+  .orgLogo {
+    width: 0px;
+    height: 0px;
+  }
+  .orgTitle {
+    text-align: center;
+  }
+  .list {
+    width: 90%;
+    height: 200px;
+    position: relative;
+  }
+  .list li {
+    color: white;
+    text-align: center;
+    padding-right: 10px;
+    width: auto;
+    float: left;
+  }
+  .list li:hover {
+    width: auto;
+  }
+}
+
+@media screen and (max-width: 400px) {
+  .orgLogo {
+    width: 0px;
+    height: 0px;
+  }
+  .list {
+    color: black;
+    width: 100%;
+    height: auto;
+    position: relative;
+  }
+  .list li {
+    color: black;
+    text-align: center;
+    float: none;
+  }
+  .list li:hover {
+    width: auto;
+  }
+}

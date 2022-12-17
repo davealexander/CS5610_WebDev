@@ -1,0 +1,28 @@
+{
+  "name": "festival2",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint"
+  },
+  "dependencies": {
+    "@auth0/nextjs-auth0": "^2.0.1",
+    "@google-cloud/local-auth": "^2.1.0",
+    "axios": "^1.2.1",
+    "bootstrap": "^5.2.3",
+    "eslint": "8.29.0",
+    "eslint-config-next": "13.0.6",
+    "gapi-cjs": "^1.0.3",
+    "gapi-script": "^1.2.0",
+    "googleapis": "^105.0.0",
+    "mongoose": "^6.8.0",
+    "next": "13.0.6",
+    "next-transpile-modules": "^10.0.0",
+    "node-fetch": "^3.3.0",
+    "react": "18.2.0",
+    "react-dom": "18.2.0"
+  }
+}

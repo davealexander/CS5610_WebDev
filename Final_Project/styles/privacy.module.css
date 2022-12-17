@@ -1,0 +1,12 @@
+.customContainer {
+  padding: 10px;
+  background-color: lightgray;
+}
+.customContainer h1 {
+  text-align: center;
+  margin: 20px;
+}
+.customContainer h2 {
+  margin-bottom: 10px;
+  border-bottom: 1px solid gray;
+}
