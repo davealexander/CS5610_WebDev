@@ -1,16 +1,15 @@
 export default async function handler(req, res) {
   const { method } = req;
-  const CAL_ID =
-    "b567c8f9a2f0643c3f3f7a566ae587f6b2f3c2b96dd77241ce7e6abc1146317c@group.calendar.google.com";
-  const CAL_SECRET = process.env.GOOGLE_SECRET;
+  const CAL_ID = process.env.GOOGLE_CAL;
+  const CAL_API = process.env.GOOGLE_API;
+  const REFRESH_TOKEN = process.env.GOOGLE_SECRET;
   switch (method) {
     case "GET":
       try {
         let headersList = {
           Accept: "*/*",
           "User-Agent": "Thunder Client (https://www.thunderclient.com)",
-          Authorization:
-            "Bearer ya29.a0AeTM1idEXGjjmmkJ1X11qeIXT8-btSaDCZyDdV1IS9aUkrXf04BJzV14uQ5Q8AqnmPjdCP2lQKSN-fQuO97ufP_pgP0IH0zky-AGAKSJyJahC95mH7QvhmfF7bg7PtpMq8EMzzYpuf7oIlxgn2_gGIqIHdO1aCgYKAZ0SARISFQHWtWOmv_OUrxSIseB0cfLzLRZD-g0163",
+          Authorization: `Bearer ${REFRESH_TOKEN}`,
         };
 
         let headersList2 = {
@@ -20,7 +19,7 @@ export default async function handler(req, res) {
         };
 
         let response = await fetch(
-          `https://www.googleapis.com/calendar/v3/calendars/${CAL_ID}/events?key=AIzaSyA79RrKLtBB5-b5WXsR9hgOOljTNFLZ02o`,
+          `https://www.googleapis.com/calendar/v3/calendars/${CAL_ID}/events?key=${CAL_API}`,
           {
             method: "GET",
             headers: headersList2,
